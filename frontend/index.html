@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Secure Login</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: #ffffff;
+    width: 360px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+h2 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+
+label {
+    font-size: 14px;
+    color: #475569;
+    display: block;
+    margin-bottom: 6px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.92;
+}
+
+#error {
+    margin-top: 12px;
+    color: #dc2626;
+    font-size: 13px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Secure Login</h2>
+
+    <form id="loginForm">
+        <label>Username</label>
+        <input type="text" id="username" required>
+
+        <label>Password</label>
+        <input type="password" id="password" required>
+
+        <button type="submit">Submit</button>
+        <div id="error"></div>
+    </form>
+</div>
+
+<script>
+const form = document.getElementById('loginForm');
+const error = document.getElementById('error');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    error.textContent = '';
+
+    const username = document.getElementById('username');
+    const password = document.getElementById('password');
+
+    const passwordRegex = /^[a-zA-Z0-9]+$/;
+
+    if (!passwordRegex.test(password.value)) {
+        error.textContent = 'Password must contain only letters and numbers.';
+        return;
+    }
+
+    try {
+        const res = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        });
+
+        const data = await res.json();
+        alert(data.message);
+
+        // Clear inputs
+        username.value = '';
+        password.value = '';
+
+    } catch (err) {
+        error.textContent = 'Backend not reachable';
+        console.error(err);
+    }
+});
+</script>
+
+</body>
+</html>
