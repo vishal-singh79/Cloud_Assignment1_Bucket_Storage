@@ -5,32 +5,21 @@ const { Storage } = require('@google-cloud/storage');
 
 const app = express();
 
-// ===============================
-// Middlewares
-// ===============================
 app.use(bodyParser.json());
 app.use(cors());
 
-// ===============================
-// Google Cloud Storage Config
-// ===============================
-const storage = new Storage({
-    keyFilename: './credentials.json' // UPDATE PATH IF NEEDED
-});
+
+const storage = new Storage();
 
 const bucketName = 'userdata-storage';
 const bucket = storage.bucket(bucketName);
 
-// ===============================
-// Routes
-// ===============================
 
-// Health check
 app.get('/', (req, res) => {
     res.send('Backend is running');
 });
 
-// Login route (unique username)
+
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
@@ -40,12 +29,12 @@ app.post('/login', async (req, res) => {
         });
     }
 
-    // Normalize username
+
     const safeUsername = username.trim().toLowerCase();
     const file = bucket.file(`users/${safeUsername}.txt`);
 
     try {
-        // Check if user already exists
+
         const [exists] = await file.exists();
         if (exists) {
             return res.status(409).json({
@@ -71,9 +60,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// ===============================
-// Start Server
-// ===============================
+
 const PORT = 3000;
 
 app.listen(PORT, '0.0.0.0', () => {
