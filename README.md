@@ -4,7 +4,7 @@ A full-stack web application that securely stores user credentials in **Google C
 
 ---
 
-## 🎯 Features
+##  Features
 
 - **Secure User Registration**: Store user credentials in Google Cloud Storage
 - **Frontend UI**: Modern, responsive login interface with client-side validation
@@ -15,7 +15,7 @@ A full-stack web application that securely stores user credentials in **Google C
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 .
@@ -34,7 +34,7 @@ A full-stack web application that securely stores user credentials in **Google C
 ![Screenshot](user_result_ss.png)
 
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Component | Technology |
 |-----------|-----------|
@@ -45,7 +45,7 @@ A full-stack web application that securely stores user credentials in **Google C
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 
 - Node.js (v14 or higher)
 - npm or yarn
@@ -54,7 +54,7 @@ A full-stack web application that securely stores user credentials in **Google C
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone and Navigate
 
@@ -94,7 +94,7 @@ npx http-server
 
 ---
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ### POST /login
 Registers a new user and stores credentials in Google Cloud Storage.
@@ -130,7 +130,7 @@ Registers a new user and stores credentials in Google Cloud Storage.
 
 ---
 
-## 🔐 Security Features
+##  Security Features
 
 - Username normalization (lowercase, trimmed)
 - Duplicate username detection
@@ -141,7 +141,7 @@ Registers a new user and stores credentials in Google Cloud Storage.
 
 ---
 
-## 📦 Dependencies
+##  Dependencies
 
 **Backend** (`backend/package.json`):
 - `express@^5.2.1` - Web framework
@@ -151,7 +151,7 @@ Registers a new user and stores credentials in Google Cloud Storage.
 
 ---
 
-## 🎨 Frontend Features
+##  Frontend Features
 
 - Modern, responsive design
 - Real-time form validation
@@ -161,7 +161,7 @@ Registers a new user and stores credentials in Google Cloud Storage.
 
 ---
 
-## 🚢 Deployment
+##  Deployment
 
 The project is designed to deploy on Google Cloud VM with:
 - **NGINX** for frontend serving
